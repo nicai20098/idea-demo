@@ -4,6 +4,7 @@ pipeline {
     // 定义环境变量（可选）
     environment {
         MAVEN_HOME = tool 'Maven-3.9.8'  // 对应 Jenkins 中配置的 Maven 工具名称
+        JAVA_HOME = tool 'jdk8'  // 对应 Jenkins 中配置的 JDK 工具名称
     }
 
     stages {
@@ -49,9 +50,9 @@ pipeline {
                         transfers: [
                             sshTransfer(
                                 sourceFiles: 'target/*.jar',
-                                remoteDirectory: '/home/jenkins/apps/',
+                                remoteDirectory: '/apps/',
 //                                 execCommand: 'cd /home/jenkins/apps/ && docker-compose restart'
-                                execCommand: 'echo jar move success~~~'
+                                execCommand: 'echo jar move success~~~ && pwd && sh ${JAVA_HOME}/jdk8/bin/java -jar /home/jenkins/apps/demo-0.0.1-SNAPSHOT.jar'
                             )
                         ]
                     )
