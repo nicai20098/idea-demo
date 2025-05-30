@@ -37,26 +37,27 @@ pipeline {
 //         }
 
         // 可选：部署到测试环境
-//         stage('Deploy to Test') {
-//             when {
-//                 branch 'develop'  // 仅 develop 分支触发
-//             }
-//             steps {
-//                 // 使用 Publish Over SSH 插件部署
-//                 sshPublisher(publishers: [
-//                     sshPublisherDesc(
-//                         configName: 'test-server',  // 对应 SSH 服务器配置名称
-//                         transfers: [
-//                             sshTransfer(
-//                                 sourceFiles: 'target/*.jar',
-//                                 remoteDirectory: '/opt/apps/',
-//                                 execCommand: 'cd /opt/apps/ && docker-compose restart'
-//                             )
-//                         ]
-//                     )
-//                 ])
-//             }
-//         }
+        stage('Deploy to Test') {
+            when {
+                branch 'master'  // 仅 develop 分支触发
+            }
+            steps {
+                // 使用 Publish Over SSH 插件部署
+                sshPublisher(publishers: [
+                    sshPublisherDesc(
+                        configName: 'jenkins@192.168.208.12',  // 对应 SSH 服务器配置名称
+                        transfers: [
+                            sshTransfer(
+                                sourceFiles: 'target/*.jar',
+                                remoteDirectory: '/home/jenkins/apps/',
+//                                 execCommand: 'cd /home/jenkins/apps/ && docker-compose restart'
+                                echo "jar move success~~~"
+                            )
+                        ]
+                    )
+                ])
+            }
+        }
     }
 
     // 构建后操作
