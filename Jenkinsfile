@@ -52,7 +52,7 @@ pipeline {
                                 sourceFiles: 'target/*.jar',
                                 remoteDirectory: '/apps/',
 //                                 execCommand: 'cd /home/jenkins/apps/ && docker-compose restart'
-                                execCommand: 'echo jar move success~~~ && pwd && sh ${JAVA_HOME}/jdk8/bin/java -jar /home/jenkins/apps/target/demo-1.0-SNAPSHOT.jar'
+                                execCommand: 'echo jar move success~~~ && pwd && ${JAVA_HOME}/jdk8/bin/java -jar /home/jenkins/apps/target/demo-1.0-SNAPSHOT.jar'
                             )
                         ]
                     )
