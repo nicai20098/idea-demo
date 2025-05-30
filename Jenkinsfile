@@ -38,9 +38,9 @@ pipeline {
 
         // 可选：部署到测试环境
         stage('Deploy to Test') {
-            when {
-                branch 'master'  // 仅 develop 分支触发
-            }
+//             when {
+//                 branch 'master'  // 仅 develop 分支触发
+//             }
             steps {
                 // 使用 Publish Over SSH 插件部署
                 sshPublisher(publishers: [
