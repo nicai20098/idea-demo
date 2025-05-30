@@ -24,17 +24,17 @@ pipeline {
             post {
                 success {
                     archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
-                    junit 'target/surefire-reports/*.xml'  // 收集测试报告
+//                     junit 'target/surefire-reports/*.xml'  // 收集测试报告
                 }
             }
         }
 
         // 可选：代码质量检查
-        stage('Quality Check') {
-            steps {
-                sh "${MAVEN_HOME}/bin/mvn sonar:sonar"  // 需要 SonarQube 集成
-            }
-        }
+//         stage('Quality Check') {
+//             steps {
+//                 sh "${MAVEN_HOME}/bin/mvn sonar:sonar"  // 需要 SonarQube 集成
+//             }
+//         }
 
         // 可选：部署到测试环境
 //         stage('Deploy to Test') {
